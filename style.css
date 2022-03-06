@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  min-height: 500px;
+  width: 100vw;
+}
+.header {
+  height: 120px;
+  width: 100%;
+  background: #D6EAF8;
+}
+.header h2 {
+  font-size: 32px;
+  padding: 25px 0;
+  text-align: center;
+}
+.header p {
+  margin: 0 20px;
+}
+.header p span {
+  color : #28B463;
+}
+#date {
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  margin: 10px 0;
+}
+#msg-box {
+  min-height: 200px;
+  background: #EBDEF0;
+}
+.msg {
+  display: inline-grid;
+  padding: 0 10px;
+  grid-template-columns: auto auto auto;
+  gap: 10px;
+}
+
+#time {
+  font-weight: 800;
+}
