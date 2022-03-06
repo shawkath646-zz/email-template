@@ -1,12 +1,71 @@
 <!<!DOCTYPE HTML>
-<!DOCTYPE html>
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Email Template - 01</title>
   </head>
   <body>
-    <div class="header"></div>
+    <div class="msgArea">
+      <textarea id="msgInput" placeholder="Enter your msg here..."></textarea>
+      <button onclick="setMsg()">Add mesaages</button>
+      <button id="copyBtn">Copy</button>
+    </div>
+    <div id="html">
+      <div class="header">
+      <h2 id="timeHeader"></h2>
+      <h3 id="date"></h3>
+      <p>From : SH Maruf <span>( shawkath646@gmail.com )</span></p>
+    </div>
+    <div>
+      <div id="msg-box"></div>
+    </div>
+    </div>
+    <script>
+      var date = document.getElementById("date");
+      var time = document.getElementById("time");
+      var msgBox = document.getElementById("msg-box");
+      
+        var today = new Date();
+      
+        var hours = today.getHours();
+        var minutes = today.getMinutes();
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        minutes = minutes < 10 ? '0'+minutes : minutes;
+        var time = document.getElementById("timeHeader").innerText =  hours + ':' + minutes + ' ' + ampm;
+       date.innerText =  new Date().toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"});
+      
+       function setMsg() {
+         msgBox.innerHTML += `
+           <div class="msg">
+            
+            <span id="msg-text">${msgInput.value}</span>
+          </div>`;
+          msgInput.value = "";
+       }
+      
+      function copyToClipboard(html) {
+        var container = document.createElement('div')
+        container.innerHTML = html
+        container.style.position = 'fixed'
+        container.style.pointerEvents = 'none'
+        container.style.opacity = 0
+        document.body.appendChild(container)
+        window.getSelection().removeAllRanges()
+        var range = document.createRange()
+        range.selectNode(container)
+        window.getSelection().addRange(range)
+        document.execCommand('copy')
+        document.body.removeChild(container);
+        alert("Copied");
+      }
+    document.getElementById('copyBtn').onclick = function () {
+    var htmlEditor = document.getElementById("html");
+    copyToClipboard(htmlEditor.innerHTML)
+}
+    </script>
   </body>
 </html>
